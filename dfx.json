@@ -1,19 +1,19 @@
 {
   "canisters": {
-    "openD": {
-      "main": "src/openD/main.mo",
+    "opend": {
+      "main": "src/opend/main.mo",
       "type": "motoko"
     },
-    "openD_assets": {
+    "opend_assets": {
       "dependencies": [
-        "openD"
+        "opend"
       ],
       "frontend": {
-        "entrypoint": "src/openD_assets/src/index.html"
+        "entrypoint": "src/opend_assets/src/index.html"
       },
       "source": [
-        "src/openD_assets/assets",
-        "dist/openD_assets/"
+        "src/opend_assets/assets",
+        "dist/opend_assets/"
       ],
       "type": "assets"
     }
