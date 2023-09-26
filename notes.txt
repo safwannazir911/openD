@@ -1,0 +1,11 @@
+npm install webpack@5.0.0 --save-dev
+npm install webpack-cli --save-dev
+npm update
+
+dfx canister id opend
+dfx identity get-principal
+
+
+FrontEnd - opend_assets(id)
+Candid opend- candid(id) opend(id)
+Candid nft- candid(id) nft(id)
