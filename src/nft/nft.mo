@@ -1,8 +1,10 @@
 import Text "mo:base/Text";
 import Principal "mo:base/Principal";
 import Nat8 "mo:base/Nat8";
+import Debug "mo:base/Debug";
 
 actor class NFT(name:Text,owner:Principal,content:[Nat8]) =this{
+    Debug.print("hello from nft");
     private let nftName=name;
     private var nftOwner=owner;
     private let nftContent=content;
