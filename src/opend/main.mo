@@ -5,6 +5,7 @@ import Nat8 "mo:base/Nat8";
 import Prelude "mo:base/Prelude";
 import Iter "mo:base/Iter";
 import Debug "mo:base/Debug";
+import Text "mo:base/Text";
 import NFTActorClass "../nft/nft";
 
 actor OpenD {
@@ -102,6 +103,32 @@ actor OpenD {
         };
 
         return listing.nftPrice;
+
+    };
+    public shared (msg) func completePurchase(id : Principal, ownerId : Principal, newOwnerId : Principal) : async Text {
+        var purchasedNFT : NFTActorClass.NFT = switch (mapOfNFTs.get(id)) {
+            case null return "";
+            case (?result) result;
+        };
+        let transferResult = await purchasedNFT.transferOwnership(newOwnerId,false);
+        if (transferResult == "Success") {
+            //delete it from listing hash map
+            mapOfListings.delete(id);
+            //assign delete it from sellers nft hash map
+            var userNFTs : List.List<Principal> = switch (mapOfOwners.get(ownerId)) {
+                case null List.nil<Principal>();
+                case (?result) result;
+            };
+            userNFTs:=List.filter(userNFTs, func (litItemId:Principal):Bool{
+                return litItemId !=id;
+            });
+            //add it to new buyers owned nfts hash map
+            addToOwnershipMap(newOwnerId,id);
+            return "Success";
+        }
+        else{
+            return transferResult
+        }
 
     };
 
