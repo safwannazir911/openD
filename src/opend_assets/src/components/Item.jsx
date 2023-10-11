@@ -32,7 +32,7 @@ function Item(props) {
   let NFTActor;
 
   async function loadNFT() {
-    NFTActor = await Actor.createActor(idlFactory,
+    NFTActor = await Actor.createActor(idlFactory,     //Create an Actor for each NFT
       {
         agent,
         canisterId: id,
@@ -113,7 +113,7 @@ function Item(props) {
     const TokenActor = await Actor.createActor(tokenIdlFactory,
       {
         agent,
-        canisterId: Principal.fromText("rrkah-fqaaa-aaaaa-aaaaq-cai"),
+        canisterId: Principal.fromText("rrkah-fqaaa-aaaaa-aaaaq-cai"),   //Actor for token canister
       })
     const sellerId=await opend.getOriginalOwner(props.id);
     const itemprice =await opend.getListedNFTPrice(props.id);
